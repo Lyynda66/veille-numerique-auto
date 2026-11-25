@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tableau de bord des résultats de veille concurrentielle de Flexpack66, classés par emballage carton et bois.">
+  <title>Veille concurrentielle | Flexpack66</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17241f;
+      --muted: #64736c;
+      --paper: #f5f7f4;
+      --card: #fff;
+      --line: #dce5de;
+      --green: #176b4a;
+      --green-soft: #e7f3eb;
+      --wood: #8a5528;
+      --wood-soft: #f5ede4;
+      --amber: #805d12;
+      --amber-soft: #fff4d8;
+      --shadow: 0 10px 28px rgba(27, 49, 38, .06);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.55 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    a { color: var(--green); }
+    a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid #e6a93e; outline-offset: 3px; }
+    .hero { color: white; background: linear-gradient(120deg, #123f30, #1d7652); padding: 48px max(24px, calc((100% - 1120px)/2)); }
+    .hero-inner { max-width: 1120px; margin: auto; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .13em; font-size: .75rem; font-weight: 750; opacity: .8; }
+    h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.08; margin: 10px 0 12px; }
+    .hero p { margin: 0; max-width: 700px; color: #e4f1e9; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .pill { border: 1px solid rgba(255,255,255,.35); border-radius: 999px; padding: 6px 12px; font-size: .85rem; }
+    main { max-width: 1120px; margin: 28px auto 70px; padding: 0 22px; }
+    .notice { background: var(--amber-soft); border: 1px solid #f0dfb2; color: #5c4815; padding: 14px 17px; border-radius: 12px; margin-bottom: 22px; }
+    .notice strong { display: block; margin-bottom: 3px; }
+    .top-grid { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 20px; align-items: start; }
+    .panel, .result-card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); }
+    .panel { padding: 22px; }
+    h2 { font-size: 1.28rem; line-height: 1.25; margin: 0 0 14px; }
+    h3 { font-size: 1.05rem; margin: 0; }
+    .panel p { color: var(--muted); margin: 8px 0; }
+    .edition-list { list-style: none; padding: 0; margin: 0; }
+    .edition-list li + li { border-top: 1px solid var(--line); }
+    .edition-list a { text-decoration: none; display: flex; justify-content: space-between; gap: 10px; padding: 12px 0; font-weight: 650; }
+    .edition-list a:hover { text-decoration: underline; }
+    .edition-list small { color: var(--muted); font-weight: 450; }
+    .criteria { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 22px 0; }
+    .criterion { padding: 15px; background: #fff; border: 1px solid var(--line); border-radius: 12px; }
+    .criterion b { display: block; margin-bottom: 4px; }
+    .criterion span { color: var(--muted); font-size: .9rem; }
+    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin: 36px 0 14px; }
+    .section-heading p { color: var(--muted); margin: 3px 0 0; }
+    .edition-heading { scroll-margin-top: 20px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 9px; margin: 16px 0; }
+    .filter-btn { border: 1px solid var(--line); background: white; border-radius: 999px; padding: 8px 14px; color: var(--ink); cursor: pointer; font: inherit; font-size: .9rem; }
+    .filter-btn[aria-pressed="true"] { background: var(--green); border-color: var(--green); color: white; }
+    .search { width: min(100%, 350px); border: 1px solid var(--line); background: white; border-radius: 10px; padding: 10px 12px; font: inherit; }
+    .category { margin: 22px 0 30px; scroll-margin-top: 20px; }
+    .category-title { display: flex; align-items: center; gap: 10px; margin: 0 0 12px; }
+    .category-title span { font-size: 1.35rem; }
+    .category-title.carton { color: var(--green); }
+    .category-title.bois { color: var(--wood); }
+    .results { display: grid; gap: 12px; }
+    .result-card { padding: 18px; box-shadow: none; }
+    .result-top { display: flex; justify-content: space-between; align-items: start; gap: 14px; }
+    .result-card h4 { font-size: 1.02rem; margin: 0; }
+    .tag { flex: 0 0 auto; border-radius: 999px; padding: 4px 9px; font-size: .75rem; font-weight: 700; background: var(--green-soft); color: var(--green); }
+    .bois .tag { background: var(--wood-soft); color: var(--wood); }
+    .result-card .transcription { margin: 12px 0; }
+    .source-meta { border-top: 1px solid var(--line); padding-top: 10px; display: flex; flex-wrap: wrap; gap: 8px 18px; color: var(--muted); font-size: .86rem; }
+    .source-meta b { color: var(--ink); font-weight: 650; }
+    .source-meta a { overflow-wrap: anywhere; }
+    .empty { border: 1px dashed #b9c9bd; background: #fbfcfa; color: var(--muted); padding: 18px; border-radius: 12px; }
+    .empty b { color: var(--ink); display: block; margin-bottom: 3px; }
+    footer { border-top: 1px solid var(--line); color: var(--muted); padding: 22px; text-align: center; font-size: .9rem; }
+    [hidden] { display: none !important; }
+    @media (max-width: 760px) {
+      .top-grid { grid-template-columns: 1fr; }
+      .criteria { grid-template-columns: 1fr; }
+      .section-heading { align-items: start; flex-direction: column; }
+      .search { width: 100%; }
+      .hero { padding-top: 36px; padding-bottom: 36px; }
+    }
+    @media print {
+      body { background: white; }
+      .hero { background: #176b4a !important; print-color-adjust: exact; }
+      .filters, .search { display: none; }
+      .panel, .result-card { box-shadow: none; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">Flexpack66 · veille concurrentielle</div>
+      <h1>Résultats de veille</h1>
+      <p>Suivi mensuel des informations publiées par les concurrents du secteur de l’assemblage et de la commercialisation d’emballages. Les éléments sont retranscrits, sans analyse.</p>
+      <div class="hero-meta">
+        <span class="pill">Mise à jour : mensuelle</span>
+        <span class="pill">Période couverte : publications depuis 2020</span>
+        <span class="pill">Catégories : carton et bois</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <aside class="notice" aria-label="Note sur les résultats">
+      <strong>Modèle de présentation — résultats à renseigner</strong>
+      Aucune information concurrentielle ni aucun prix n’est inventé ici. Chaque entrée publiée devra renvoyer vers sa source d’origine et préciser l’auteur, la date et la fiabilité évaluée.
+    </aside>
+
+    <div class="top-grid">
+      <section class="panel" aria-labelledby="about-title">
+        <h2 id="about-title">Périmètre et méthode de lecture</h2>
+        <p>Les résultats sont regroupés par type d’emballage. Chaque fiche présente un fait ou une information de la source, avec une retranscription fidèle et un lien de vérification.</p>
+        <p>La fiabilité est indiquée comme un repère de source (par exemple : publication officielle du concurrent, organisme professionnel, presse spécialisée). Ce repère ne constitue pas une analyse du contenu.</p>
+      </section>
+      <nav class="panel" aria-labelledby="archive-title">
+        <h2 id="archive-title">Versions mensuelles</h2>
+        <p>Chaque édition possède un lien direct pour retrouver les résultats d’un mois donné.</p>
+        <ul class="edition-list">
+          <li><a href="#edition-modele">Édition en cours <small>Modèle à compléter →</small></a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <section class="criteria" aria-label="Critères renseignés pour chaque source">
+      <div class="criterion"><b>Auteur</b><span>Nom de l’auteur, de l’organisme ou de l’entreprise émettrice.</span></div>
+      <div class="criterion"><b>Date</b><span>Date de publication indiquée par la source (année 2020 ou après).</span></div>
+      <div class="criterion"><b>Fiabilité</b><span>Nature de la source et niveau de vérification, avec justification factuelle.</span></div>
+    </section>
+
+    <section id="edition-modele" class="edition-heading" aria-labelledby="edition-title">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow" style="color:var(--green)">Version · édition en cours</div>
+          <h2 id="edition-title">Édition mensuelle — à compléter</h2>
+          <p>Ajoutez ci-dessous les informations publiées pendant le mois suivi. Les entrées antérieures à 2020 sont à exclure.</p>
+        </div>
+        <input id="search" class="search" type="search" placeholder="Rechercher un concurrent, un produit…" aria-label="Rechercher dans les résultats">
+      </div>
+      <div class="filters" role="group" aria-label="Filtrer par type d’emballage">
+        <button class="filter-btn" type="button" data-filter="all" aria-pressed="true">Tout afficher</button>
+        <button class="filter-btn" type="button" data-filter="carton" aria-pressed="false">Cartons</button>
+        <button class="filter-btn" type="button" data-filter="bois" aria-pressed="false">Bois</button>
+      </div>
+
+      <section class="category carton" data-category="carton" aria-labelledby="carton-title">
+        <h3 id="carton-title" class="category-title carton"><span aria-hidden="true">▤</span> Emballages carton</h3>
+        <div class="results">
+          <div class="empty"> <b>Aucun résultat publié dans cette édition.</b>À compléter avec une retranscription sourcée : concurrent, information publiée et éventuel prix affiché.</div>
+          <!-- Dupliquer le modèle de fiche ci-dessous pour chaque résultat, puis retirer le bloc « Aucun résultat ».
+          <article class="result-card">
+            <div class="result-top"><h4>Intitulé factuel de l’information publiée</h4><span class="tag">Carton</span></div>
+            <p class="transcription">Retranscription fidèle du contenu de la source, sans commentaire ni interprétation.</p>
+            <div class="source-meta">
+              <span><b>Concurrent :</b> Nom</span>
+              <span><b>Auteur :</b> Nom / organisme</span>
+              <span><b>Date :</b> AAAA-MM-JJ</span>
+              <span><b>Fiabilité :</b> Source officielle — lien vérifiable</span>
+              <span><b>Prix publié :</b> valeur et unité, ou « non indiqué »</span>
+              <span><b>Source :</b> <a href="https://example.com" rel="noopener noreferrer">Titre de la publication</a></span>
+            </div>
+          </article>
+          -->
+        </div>
+      </section>
+
+      <section class="category bois" data-category="bois" aria-labelledby="bois-title">
+        <h3 id="bois-title" class="category-title bois"><span aria-hidden="true">▧</span> Emballages bois</h3>
+        <div class="results">
+          <div class="empty"><b>Aucun résultat publié dans cette édition.</b>À compléter avec une retranscription sourcée : concurrent, information publiée et éventuel prix affiché.</div>
+          <!-- Reprendre le modèle de fiche ci-dessus et remplacer la catégorie par « Bois ». -->
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer>Flexpack66 · Veille concurrentielle · Les liens des sources doivent rester accessibles et vérifiables.</footer>
+  <script>
+    const buttons = [...document.querySelectorAll('.filter-btn')];
+    const categories = [...document.querySelectorAll('[data-category]')];
+    const search = document.querySelector('#search');
+    let activeFilter = 'all';
+
+    function updateResults() {
+      const query = search.value.trim().toLocaleLowerCase('fr');
+      categories.forEach(category => {
+        const matchesFilter = activeFilter === 'all' || category.dataset.category === activeFilter;
+        const cards = [...category.querySelectorAll('.result-card')];
+        const empty = category.querySelector('.empty');
+        let visibleCards = 0;
+        cards.forEach(card => {
+          const matchesQuery = card.textContent.toLocaleLowerCase('fr').includes(query);
+          card.hidden = !matchesQuery;
+          if (matchesQuery) visibleCards++;
+        });
+        if (empty) empty.hidden = Boolean(query) || visibleCards > 0;
+        category.hidden = !matchesFilter || (Boolean(query) && visibleCards === 0);
+      });
+    }
+
+    buttons.forEach(button => button.addEventListener('click', () => {
+      activeFilter = button.dataset.filter;
+      buttons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      updateResults();
+    }));
+    search.addEventListener('input', updateResults);
+  </script>
+</body>
+</html>
