@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 350" role="img" aria-labelledby="title desc">
+  <title id="title">Flexpack66</title>
+  <desc id="desc">Identité graphique bleu, rouge, vert et bleu marine inspirée du logo Flexpack66</desc>
+  <rect width="820" height="350" rx="175" fill="#5890ae"/>
+  <g transform="translate(160 76)">
+    <text x="0" y="112" fill="#f7f9fa" stroke="#2e3d45" stroke-width="2" paint-order="stroke" font-family="Arial Black, Arial, sans-serif" font-size="118" font-weight="900" letter-spacing="-8">Flex</text>
+    <g transform="translate(278 40)">
+      <path d="M16 52 62 27 100 49 53 75Z" fill="#cfd4d5"/>
+      <path d="M16 52 53 75 53 115 16 91Z" fill="#8b2026"/>
+      <path d="M53 75 100 49 100 89 53 115Z" fill="#ed2628"/>
+      <path d="M16 52 62 27 100 49 53 75Z" fill="#f52d31"/>
+      <path d="M93 48 139 24 177 46 131 72Z" fill="#bfd98a"/>
+      <path d="M93 48 131 72 131 112 93 88Z" fill="#4ea134"/>
+      <path d="M131 72 177 46 177 86 131 112Z" fill="#72bf26"/>
+    </g>
+  </g>
+  <text x="410" y="205" fill="#132d67" font-family="Arial, sans-serif" font-size="63" font-weight="900" text-anchor="middle" letter-spacing="2">PACK66</text>
+  <text x="410" y="248" fill="#17324c" font-family="Arial, sans-serif" font-size="25" font-weight="700" text-anchor="middle" letter-spacing="5">Stockage • Montage • Livraison</text>
+  <text x="410" y="284" fill="#ffffff" font-family="Arial, sans-serif" font-size="24" font-weight="500" text-anchor="middle">Toutes vos solutions d’emballage, du montage à la livraison</text>
+  <text x="410" y="322" fill="#ffffff" font-family="Arial, sans-serif" font-size="23" font-weight="700" text-anchor="middle" letter-spacing="1">BUREAUX  •  PRODUCTION  •  COMPTABILITÉ  •  QUALITÉ</text>
+</svg>
