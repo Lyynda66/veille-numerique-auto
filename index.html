@@ -8,19 +8,20 @@
   <style>
     :root {
       --brand-blue: #5890ae;
+      --brand-blue-light: #eef6fa;
+      --brand-blue-pale: #dfeaf1;
       --brand-blue-dark: #16324a;
       --brand-navy: #132d67;
       --brand-red: #ed2628;
       --brand-red-dark: #a91f28;
       --brand-green: #72bf26;
-      --brand-paper: #f4f7f9;
+      --brand-paper: #edf4f7;
       --card: #ffffff;
       --ink: #17324c;
       --muted: #617487;
-      --line: #d8e2e8;
-      --soft-blue: #edf5f8;
-      --wood-soft: #f7efe3;
-      --shadow: 0 12px 30px rgba(19,45,103,.09);
+      --line: #cadde7;
+      --soft-blue: #e4f1f6;
+      --shadow: 0 12px 30px rgba(19,45,103,.10);
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -28,76 +29,76 @@
     a { color: var(--brand-navy); }
     a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid #72bf26; outline-offset: 3px; }
 
-    .topbar { background: #fff; border-bottom: 1px solid var(--line); }
+    .topbar { background: var(--brand-navy); border-bottom: 4px solid var(--brand-blue); }
     .topbar-inner { max-width: 1120px; min-height: 92px; margin: auto; padding: 10px 22px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    .brand { display: inline-flex; align-items: center; gap: 12px; color: var(--brand-navy); text-decoration: none; }
-    .brand img { width: 136px; height: auto; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; color: #fff; text-decoration: none; }
+    .brand img { width: 136px; height: auto; border-radius: 8px; background: #fff; }
     .brand-name { line-height: 1; }
-    .brand-name strong { display: block; font-family: Arial, sans-serif; font-size: 1.28rem; letter-spacing: -.5px; }
-    .brand-name span { display: block; margin-top: 5px; color: var(--brand-blue-dark); font-size: .75rem; letter-spacing: 1.1px; text-transform: uppercase; }
-    .period { color: var(--muted); font-size: .85rem; text-align: right; }
+    .brand-name strong { display: block; font-size: 1.28rem; letter-spacing: -.5px; }
+    .brand-name span { display: block; margin-top: 5px; color: #cfe9f4; font-size: .75rem; letter-spacing: 1.1px; text-transform: uppercase; }
+    .period { color: #dbeaf2; font-size: .85rem; text-align: right; }
 
-    .hero { position: relative; overflow: hidden; background: linear-gradient(115deg, var(--brand-navy), var(--brand-blue)); color: #fff; }
-    .hero::after { content: ""; position: absolute; width: 340px; height: 340px; right: -90px; top: -190px; border: 70px solid rgba(114,191,38,.16); border-radius: 50%; }
+    .hero { position: relative; overflow: hidden; background: linear-gradient(115deg, #132d67 0%, #1e5680 55%, #5890ae 100%); color: #fff; }
+    .hero::before { content: ""; position: absolute; width: 420px; height: 420px; right: -210px; top: -260px; border: 65px solid rgba(255,255,255,.08); border-radius: 50%; }
+    .hero::after { content: ""; position: absolute; width: 180px; height: 180px; left: 68%; bottom: -125px; border: 32px solid rgba(88,144,174,.24); border-radius: 50%; }
     .hero-inner { position: relative; z-index: 1; max-width: 1120px; margin: auto; padding: 48px 22px 52px; }
     .eyebrow { text-transform: uppercase; letter-spacing: .13em; font-size: .75rem; font-weight: 800; }
     h1 { max-width: 760px; font-size: clamp(2.15rem, 6vw, 4.2rem); line-height: 1.02; margin: 10px 0 14px; letter-spacing: -2.5px; }
     .hero p { max-width: 760px; margin: 0; color: #edf7fb; font-size: 1.04rem; }
     .hero-meta { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 24px; }
-    .pill { border: 1px solid rgba(255,255,255,.42); background: rgba(255,255,255,.08); border-radius: 999px; padding: 7px 12px; font-size: .82rem; }
+    .pill { border: 1px solid rgba(255,255,255,.42); background: rgba(255,255,255,.11); border-radius: 999px; padding: 7px 12px; font-size: .82rem; }
 
     main { max-width: 1120px; margin: 28px auto 70px; padding: 0 22px; }
-    .notice { border-left: 5px solid var(--brand-red); background: #fff5f5; color: #5e2d31; border-radius: 10px; padding: 15px 18px; margin-bottom: 22px; }
-    .notice strong { display: block; color: var(--brand-red-dark); margin-bottom: 3px; }
+    .notice { border-left: 5px solid var(--brand-blue); background: var(--soft-blue); color: var(--brand-blue-dark); border-radius: 10px; padding: 15px 18px; margin-bottom: 22px; }
+    .notice strong { display: block; color: var(--brand-navy); margin-bottom: 3px; }
     .top-grid { display: grid; grid-template-columns: minmax(0,1fr) 300px; gap: 20px; align-items: start; }
     .panel, .result-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); }
-    .panel { padding: 22px; }
+    .panel { padding: 22px; border-top: 3px solid var(--brand-blue); }
     h2 { font-size: 1.32rem; line-height: 1.25; margin: 0 0 14px; }
     h3 { margin: 0; font-size: 1.08rem; }
     .panel p { color: var(--muted); margin: 8px 0; }
     .edition-list { list-style: none; padding: 0; margin: 0; }
     .edition-list li + li { border-top: 1px solid var(--line); }
     .edition-list a { display: flex; justify-content: space-between; gap: 10px; text-decoration: none; padding: 12px 0; font-weight: 800; }
-    .edition-list a:hover { color: var(--brand-red); }
+    .edition-list a:hover { color: var(--brand-blue); }
     .edition-list small { color: var(--muted); font-weight: 500; }
 
     .criteria { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin: 22px 0; }
     .criterion { position: relative; overflow: hidden; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 15px; }
-    .criterion::before { content: ""; position: absolute; height: 4px; inset: 0 0 auto; background: var(--brand-green); }
+    .criterion::before { content: ""; position: absolute; height: 5px; inset: 0 0 auto; background: var(--brand-navy); }
     .criterion:nth-child(2)::before { background: var(--brand-blue); }
-    .criterion:nth-child(3)::before { background: var(--brand-red); }
-    .criterion b { display: block; margin-bottom: 4px; }
+    .criterion:nth-child(3)::before { background: #246f96; }
+    .criterion b { display: block; margin-bottom: 4px; color: var(--brand-navy); }
     .criterion span { color: var(--muted); font-size: .9rem; }
 
     .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin: 36px 0 14px; }
     .section-heading p { color: var(--muted); margin: 3px 0 0; }
     .edition-heading { scroll-margin-top: 20px; }
-    .search { width: min(100%,350px); border: 1px solid var(--line); background: #fff; border-radius: 9px; padding: 10px 12px; font: inherit; }
+    .search { width: min(100%,350px); border: 1px solid var(--brand-blue); background: #fff; border-radius: 9px; padding: 10px 12px; font: inherit; }
     .filters { display: flex; flex-wrap: wrap; gap: 9px; margin: 16px 0; }
-    .filter-btn { border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 8px 14px; color: var(--ink); cursor: pointer; font: inherit; font-size: .9rem; }
+    .filter-btn { border: 1px solid var(--brand-blue); background: #fff; border-radius: 999px; padding: 8px 14px; color: var(--brand-navy); cursor: pointer; font: inherit; font-size: .9rem; }
     .filter-btn[aria-pressed="true"] { background: var(--brand-navy); border-color: var(--brand-navy); color: #fff; }
 
     .category { margin: 22px 0 30px; scroll-margin-top: 20px; }
     .category-title { display: flex; align-items: center; gap: 10px; margin: 0 0 12px; }
-    .category-title span { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 8px; color: #fff; font-size: 1rem; }
+    .category-title span { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 8px; color: #fff; font-size: 1rem; background: var(--brand-blue); }
     .category-title.carton { color: var(--brand-navy); }
-    .category-title.carton span { background: var(--brand-blue); }
-    .category-title.bois { color: var(--brand-red-dark); }
-    .category-title.bois span { background: var(--brand-red); }
+    .category-title.bois { color: var(--brand-blue-dark); }
+    .category-title.bois span { background: #246f96; }
     .results { display: grid; gap: 12px; }
-    .result-card { padding: 18px; box-shadow: none; }
+    .result-card { padding: 18px; border-left: 4px solid var(--brand-blue); box-shadow: none; }
     .result-top { display: flex; justify-content: space-between; align-items: start; gap: 14px; }
-    .result-card h4 { margin: 0; }
+    .result-card h4 { margin: 0; color: var(--brand-navy); }
     .tag { flex: 0 0 auto; border-radius: 999px; padding: 4px 9px; background: var(--soft-blue); color: var(--brand-navy); font-size: .75rem; font-weight: 800; }
-    .bois .tag { background: var(--wood-soft); color: var(--brand-red-dark); }
+    .bois .tag { background: var(--brand-blue-pale); color: var(--brand-blue-dark); }
     .transcription { margin: 12px 0; }
     .source-meta { border-top: 1px solid var(--line); padding-top: 10px; display: flex; flex-wrap: wrap; gap: 8px 18px; color: var(--muted); font-size: .86rem; }
-    .source-meta b { color: var(--ink); }
+    .source-meta b { color: var(--brand-navy); }
     .source-meta a { overflow-wrap: anywhere; }
-    .empty { border: 1px dashed #b8cad5; background: #fbfdfe; color: var(--muted); padding: 18px; border-radius: 12px; }
-    .empty b { color: var(--ink); display: block; }
+    .empty { border: 1px dashed var(--brand-blue); background: var(--brand-blue-light); color: var(--muted); padding: 18px; border-radius: 12px; }
+    .empty b { color: var(--brand-navy); display: block; }
 
-    footer { border-top: 1px solid var(--line); color: var(--muted); padding: 22px; text-align: center; font-size: .88rem; }
+    footer { background: var(--brand-navy); color: #dbeaf2; border-top: 4px solid var(--brand-blue); padding: 22px; text-align: center; font-size: .88rem; }
     [hidden] { display: none !important; }
     @media (max-width:760px) {
       .topbar-inner { align-items: center; }
@@ -122,10 +123,7 @@
     <div class="topbar-inner">
       <a class="brand" href="#top" aria-label="FLEXPACK66 — Accueil">
         <img src="assets/flexpack66-logo.svg" alt="Logo FLEXPACK66">
-        <div class="brand-name">
-          <strong>FLEXPACK66</strong>
-          <span>Veille concurrentielle</span>
-        </div>
+        <div class="brand-name"><strong>FLEXPACK66</strong><span>Veille concurrentielle</span></div>
       </a>
       <div class="period">Stockage • Montage • Livraison<br><b>Pilotage mensuel</b></div>
     </div>
@@ -145,73 +143,25 @@
   </section>
 
   <main>
-    <aside class="notice" aria-label="Note sur les résultats">
-      <strong>Modèle de présentation — résultats à renseigner</strong>
-      Aucune information concurrentielle ni aucun prix n’est inventé. Chaque entrée publiée devra renvoyer vers sa source d’origine et préciser l’auteur, la date et la fiabilité.
-    </aside>
+    <aside class="notice"><strong>Modèle de présentation — résultats à renseigner</strong>Aucune information concurrentielle ni aucun prix n’est inventé. Chaque entrée publiée devra renvoyer vers sa source d’origine et préciser l’auteur, la date et la fiabilité.</aside>
 
     <div class="top-grid">
-      <section class="panel" aria-labelledby="about-title">
-        <h2 id="about-title">Périmètre et méthode de lecture</h2>
-        <p>Les résultats sont regroupés par type d’emballage. Chaque fiche présente une retranscription fidèle accompagnée d’un lien de vérification.</p>
-        <p>La fiabilité est indiquée comme un repère factuel sur la nature de la source : publication officielle, organisme professionnel ou presse spécialisée.</p>
-      </section>
-      <nav class="panel" aria-labelledby="archive-title">
-        <h2 id="archive-title">Versions mensuelles</h2>
-        <p>Chaque édition possède un lien direct.</p>
-        <ul class="edition-list">
-          <li><a href="#edition-modele">Édition en cours <small>À compléter →</small></a></li>
-        </ul>
-      </nav>
+      <section class="panel"><h2>Périmètre et méthode de lecture</h2><p>Les résultats sont regroupés par type d’emballage. Chaque fiche présente une retranscription fidèle accompagnée d’un lien de vérification.</p><p>La fiabilité est indiquée comme un repère factuel sur la nature de la source : publication officielle, organisme professionnel ou presse spécialisée.</p></section>
+      <nav class="panel"><h2>Versions mensuelles</h2><p>Chaque édition possède un lien direct.</p><ul class="edition-list"><li><a href="#edition-modele">Édition en cours <small>À compléter →</small></a></li></ul></nav>
     </div>
 
-    <section class="criteria" aria-label="Critères des sources">
+    <section class="criteria">
       <div class="criterion"><b>Auteur</b><span>Nom de l’auteur, de l’organisme ou de l’entreprise émettrice.</span></div>
       <div class="criterion"><b>Date</b><span>Date de publication indiquée par la source, depuis 2020.</span></div>
       <div class="criterion"><b>Fiabilité</b><span>Nature de la source et niveau de vérification factuel.</span></div>
     </section>
 
-    <section id="edition-modele" class="edition-heading" aria-labelledby="edition-title">
-      <div class="section-heading">
-        <div>
-          <div class="eyebrow" style="color:var(--brand-navy)">Version · édition en cours</div>
-          <h2 id="edition-title">Édition mensuelle — à compléter</h2>
-          <p>Ajoutez les informations publiées pendant le mois suivi. Exclure les sources antérieures à 2020.</p>
-        </div>
-        <input id="search" class="search" type="search" placeholder="Rechercher un concurrent, un produit…" aria-label="Rechercher dans les résultats">
-      </div>
+    <section id="edition-modele" class="edition-heading">
+      <div class="section-heading"><div><div class="eyebrow" style="color:var(--brand-navy)">Version · édition en cours</div><h2>Édition mensuelle — à compléter</h2><p>Ajoutez les informations publiées pendant le mois suivi. Exclure les sources antérieures à 2020.</p></div><input id="search" class="search" type="search" placeholder="Rechercher un concurrent, un produit…" aria-label="Rechercher dans les résultats"></div>
+      <div class="filters" role="group" aria-label="Filtrer par type d’emballage"><button class="filter-btn" type="button" data-filter="all" aria-pressed="true">Tout afficher</button><button class="filter-btn" type="button" data-filter="carton" aria-pressed="false">Cartons</button><button class="filter-btn" type="button" data-filter="bois" aria-pressed="false">Bois</button></div>
 
-      <div class="filters" role="group" aria-label="Filtrer par type d’emballage">
-        <button class="filter-btn" type="button" data-filter="all" aria-pressed="true">Tout afficher</button>
-        <button class="filter-btn" type="button" data-filter="carton" aria-pressed="false">Cartons</button>
-        <button class="filter-btn" type="button" data-filter="bois" aria-pressed="false">Bois</button>
-      </div>
-
-      <section class="category carton" data-category="carton" aria-labelledby="carton-title">
-        <h3 id="carton-title" class="category-title carton"><span aria-hidden="true">▤</span> Emballages carton</h3>
-        <div class="results">
-          <div class="empty"><b>Aucun résultat publié dans cette édition.</b>À compléter avec une retranscription sourcée : concurrent, information publiée et éventuel prix affiché.</div>
-          <!-- Dupliquer cette fiche pour chaque résultat :
-          <article class="result-card">
-            <div class="result-top"><h4>Titre factuel de l’information publiée</h4><span class="tag">Carton</span></div>
-            <p class="transcription">Retranscription fidèle du contenu de la source, sans commentaire ni interprétation.</p>
-            <div class="source-meta">
-              <span><b>Concurrent :</b> Nom</span><span><b>Auteur :</b> Nom / organisme</span>
-              <span><b>Date :</b> AAAA-MM-JJ</span><span><b>Fiabilité :</b> Source officielle</span>
-              <span><b>Prix publié :</b> valeur et unité, ou « non indiqué »</span>
-              <span><b>Source :</b> <a href="https://example.com">Titre de la publication</a></span>
-            </div>
-          </article>
-          -->
-        </div>
-      </section>
-
-      <section class="category bois" data-category="bois" aria-labelledby="bois-title">
-        <h3 id="bois-title" class="category-title bois"><span aria-hidden="true">▧</span> Emballages bois</h3>
-        <div class="results">
-          <div class="empty"><b>Aucun résultat publié dans cette édition.</b>À compléter avec une retranscription sourcée : concurrent, information publiée et éventuel prix affiché.</div>
-        </div>
-      </section>
+      <section class="category carton" data-category="carton"><h3 class="category-title carton"><span>▤</span> Emballages carton</h3><div class="results"><div class="empty"><b>Aucun résultat publié dans cette édition.</b>À compléter avec une retranscription sourcée : concurrent, information publiée et éventuel prix affiché.</div></div></section>
+      <section class="category bois" data-category="bois"><h3 class="category-title bois"><span>▧</span> Emballages bois</h3><div class="results"><div class="empty"><b>Aucun résultat publié dans cette édition.</b>À compléter avec une retranscription sourcée : concurrent, information publiée et éventuel prix affiché.</div></div></section>
     </section>
   </main>
 
@@ -221,29 +171,19 @@
     const categories = [...document.querySelectorAll('[data-category]')];
     const search = document.querySelector('#search');
     let activeFilter = 'all';
-
     function updateResults() {
       const query = search.value.trim().toLocaleLowerCase('fr');
       categories.forEach(category => {
         const matchesFilter = activeFilter === 'all' || category.dataset.category === activeFilter;
         const cards = [...category.querySelectorAll('.result-card')];
-        const empty = category.querySelector('.empty');
         let visibleCards = 0;
-        cards.forEach(card => {
-          const matchesQuery = card.textContent.toLocaleLowerCase('fr').includes(query);
-          card.hidden = !matchesQuery;
-          if (matchesQuery) visibleCards++;
-        });
+        cards.forEach(card => { const matchesQuery = card.textContent.toLocaleLowerCase('fr').includes(query); card.hidden = !matchesQuery; if (matchesQuery) visibleCards++; });
+        const empty = category.querySelector('.empty');
         if (empty) empty.hidden = Boolean(query) || visibleCards > 0;
         category.hidden = !matchesFilter || (Boolean(query) && visibleCards === 0);
       });
     }
-
-    buttons.forEach(button => button.addEventListener('click', () => {
-      activeFilter = button.dataset.filter;
-      buttons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
-      updateResults();
-    }));
+    buttons.forEach(button => button.addEventListener('click', () => { activeFilter = button.dataset.filter; buttons.forEach(item => item.setAttribute('aria-pressed', String(item === button))); updateResults(); }));
     search.addEventListener('input', updateResults);
   </script>
 </body>
